@@ -14,6 +14,29 @@
     let UTdata = ncmb.DataStore("UpdateTest");
     let key = "score";
 
+    function searchNumber(){
+      let UTdata = numb.DataStore("UpdateTest");
+      let number = 100;
+      UTdata.equalTo("data", number)
+      .fetchAll
+      .then(function(results){
+        $("#display").addClass("text-light");
+        $("#display").addclass("bg-primary");
+      })
+    }
+
+    function searchNumberLT() {
+      let number = parseInt($("#data").val());
+      let UTdata = ncmb.DataStore("UpdateTest");
+      UTdata
+        .lessThan("100", number)
+        .fetchAll()
+        .then(function(results) {
+          $("#display").addClass("text-light");
+          $("#display").addClass("bg-primary");
+        })
+    }
+
     function enterData() {
       let uTdata = new UTdata();
       let value = parseInt($("#data").val());
@@ -122,6 +145,7 @@
           $("#display").html("count fail:" + JSON.stringify(error));
         })
     }
+
   </script>
 </head>
 
@@ -135,8 +159,9 @@
     <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
     <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
     <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-    <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
-    <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">number &lt</a>
+    <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a> + <br>
+    <a onclick="searchNumberLT()" class="btn btn-outline-secondary" role="buton">100 &lt</a>
+    <a onclick="searchNumber()" class="btn btn-outline-secondary" role="buton">100</a>
   </div>
   <div>
     <input type="text" id="update" placeholder="更新">
